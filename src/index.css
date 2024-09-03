@@ -1,0 +1,150 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Container to hold navbars and content */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+#logo1{
+    width: 190px;
+    position: relative;
+    top: 0;
+    left: 0;
+
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px; /* Adjust for top navbar height */
+}
+
+.sidenav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Horizontal Navbar */
+.horizontal-nav {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 2; /* Higher z-index for the horizontal navbar */
+}
+
+.horizontal-nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+}
+
+.horizontal-nav ul li {
+    margin-left: 20px;
+}
+
+.horizontal-nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px;
+}
+
+.horizontal-nav ul li a:hover {
+    background-color: #4744ad;
+    border-radius: 4px;
+}
+
+/* Page Content */
+.content {
+    padding: 20px;
+}
+
+   
+
+/* From Uiverse.io by lenfear23 */ 
+.scan-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+    border-radius: 30px;
+    border: 1px solid #8F9092;
+    transition: all 0.2s ease;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #606060;
+    text-shadow: 0 1px #fff;
+  }
+  
+  .scan-btn:hover {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+  }
+  
+  .scan-btn:active {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+  }
+  
+  .scan-btn:focus {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+  }
+  
+  
+  .menu-button{
+    padding: 10px;
+    margin: 10px;
+
+  }
+  .sidenav{
+    /* position: relative; */
+    z-index: 100;
+  }

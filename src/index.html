@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripter</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Vertical Navbar -->
+        
+                <div class="topnav">
+                    <ul>
+                        <!-- <li><button class="back-btn" onclick="goBack()"> <strong>&laquo;</strong></button></li>  -->
+                        <li><button class="menu-button" onclick="openNav()">&#9776; </button></li> 
+                       
+                    </ul>  
+                </div>
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#" onclick="redirectToPage()">Run Audit</a></li>
+                        <li><a href="#">Setting</a></li>
+                        <li><a href="#">Reports</a></li>
+                    </ul>
+                </div>
+            
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Horizontal Navbar -->
+            <nav class="horizontal-nav">
+                <ul>
+                    <!-- <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li> -->
+                    <li><button class="scan-btn" onclick="redirectToPage()">FULL SCAN</button></li>
+                </ul>
+            </nav>
+
+            <!-- Page Content -->
+            <div class="content">
+                <h1>Welcome to the Double Navbar Page</h1>
+                <p>This is a simple example of a page with a vertical navbar on the left and a horizontal navbar at the top.</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
