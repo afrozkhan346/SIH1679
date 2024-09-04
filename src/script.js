@@ -85,5 +85,43 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
 
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('.button');
+    const loader = document.querySelector('.loader');
+    const check = document.querySelector('.check');
+    const infoBox = document.getElementById('info-box');
+
+    btn.addEventListener('click', function () {
+        loader.classList.add('active'); 
+
+        // Fetch data from backend
+        fetch('/api/get-info')  // Replace with your actual endpoint URL
+            .then(response => response.json())
+            .then(data => {
+                loader.classList.remove('active');
+                check.classList.add('active'); 
+                
+                // Assume backend returns { option1: "Backend Info for Option One" }
+                if (data.option1) {
+                    document.getElementById('option1').checked = true;
+                    updateInfoBoxWithBackendData(data);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                loader.classList.remove('active');
+            });
+    });
+
+    function updateInfoBoxWithBackendData(data) {
+        let content = '';
+
+        // Add the fetched data to the info box
+        content += `<div class="info-content"> <h2 class="info-content-heading">Heading 1</h2>${data.option1}</div>`;
+
+        // Update the info box content
+        infoBox.innerHTML = content;
+    }
+});
 
 
