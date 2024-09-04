@@ -1,82 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scripter</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="index2.css">
-</head>
-<body>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="index2.css" />
+  </head>
+  <body>
     <div class="container">
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="#">Run Audit</a>
+          </li>
+          <li><a href="#">Setting</a></li>
+          <li><a href="#">Reports</a></li>
+        </ul>
+      </div>
 
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#" onclick="redirectToPage()">Run Audit</a></li>
-                <li><a href="#">Setting</a></li>
-                <li><a href="#">Reports</a></li>
-            </ul>
-        </div>
+      <div class="main-content">
+        <!-- Horizontal Navbar -->
+        <nav class="horizontal-nav">
+          <ul>
+            <li>
+              <button class="menu-button" onclick="openNav()">&#9776;</button>
+            </li>
+            <li><h1 class="main-heading">Automated Audit Script</h1></li>
+            <li class="nav-right">
+              <button class="scan-btn" onclick="redirectToPage()">
+                FULL SCAN
+              </button>
+            </li>
+          </ul>
+        </nav>
 
-        <div class="main-content">
-            <!-- Horizontal Navbar -->
-            <nav class="horizontal-nav">
-                <ul>
-                    <li><button class="menu-button" onclick="openNav()">&#9776; </button></li> 
-                    <li><h1 class="main-heading">Automated Audit Script</h1></li>
-                    <li class="nav-right"><button class="scan-btn" onclick="redirectToPage()">FULL SCAN</button></li>
-                </ul>
-            </nav>
-
-            <!-- Page Content -->
-            <div class="content">
-                <form class="form">
-                    <h2>Checkboxes</h2>
-                    <div class="inputGroup">
-                        <input id="option1" name="option1" type="checkbox"/>
-                        <label for="option1">Option One</label>
-                    </div>
-                    <div class="inputGroup">
-                        <input id="option2" name="option2" type="checkbox"/>
-                        <label for="option2">Option Two</label>
-                    </div>
-                    <div class="inputGroup">
-                        <input id="option3" name="option3" type="checkbox"/>
-                        <label for="option3">Option Three</label>
-                    </div>
-                    <div class="inputGroup">
-                        <input id="option4" name="option4" type="checkbox"/>
-                        <label for="option4">Option Four</label>
-                    </div>
-                </form>
-
-               
-                <div class="info-box" id="info-box">
-                    <!-- Info content will be dynamically added here --> 
-                </div>
-                
-                
-                <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+        <!-- Page Content -->
+        <div class="content">
+          <form class="form">
+            <h2>Checkboxes</h2>
+            <div class="inputGroup">
+              <input id="option1" name="option1" type="checkbox" />
+              <label for="option1">Option One</label>
             </div>
-            <div class="main">
-                <button class="button">Get Report</button>
-                
-                
-                <div class="loader">
-                  <div class="check">
-                    <span class="check-one"></span>
-                    <span class="check-two"></span>
-                  </div>
-                </div>
-                
-              </div>
+            <div class="inputGroup">
+              <input id="option2" name="option2" type="checkbox" />
+              <label for="option2">Option Two</label>
+            </div>
+            <div class="inputGroup">
+              <input id="option3" name="option3" type="checkbox" />
+              <label for="option3">Option Three</label>
+            </div>
+            <div class="inputGroup">
+              <input id="option4" name="option4" type="checkbox" />
+              <label for="option4">Option Four</label>
+            </div>
+          </form>
+
+          <div class="info-box" id="info-box">
+            <!-- Info content will be dynamically added here -->
+          </div>
+
+          <link
+            href="https://fonts.googleapis.com/css?family=Fira+Sans"
+            rel="stylesheet"
+          />
         </div>
+        <div class="main">
+          <button class="button" onclick="runScript()">Get Report</button>
+          <h1 style="font-size: 20px; margin-top: 30px" id="reportTag">
+            Report will be generated after clicking on button
+          </h1>
+
+          <div class="loader">
+            <div class="check">
+              <span class="check-one"></span>
+              <span class="check-two"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <img src="" alt="">
+    <img src="" alt="" />
     <script src="script.js"></script>
     <script src="main.js"></script>
-</body>
+    <script type="text/javascript">
+      const scriptRunner = require("child_process");
+      const fs = require("fs");
+
+      const runScript = () => {
+        console.log("Hello World!");
+        const command = "powershell -File ./Scripts/compare.ps1";
+
+        scriptRunner.exec(command, (error, stdout, stderr) => {
+          console.log("Script is Running");
+          if (error) {
+            console.error(`Execution error: ${error}`);
+            return;
+          }
+          document.getElementById("reportTag").textContent = stdout; // Ensure this updates correctly in Electron
+
+          fs.readFile("./Scripts/result.txt", "utf8", (err, data) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            console.log(data);
+            const parsedData = data
+              .replace(/\\n/g, "\n") // Replace \n with a newline
+              .replace(/\\t/g, "\t");
+            document.getElementById("reportTag").textContent = parsedData;
+          });
+        });
+      };
+    </script>
+  </body>
 </html>

@@ -1,0 +1,8 @@
+﻿2 unmatched configurations in your system found
+
+Maximum password age (days):                          42
+Lockout duration (minutes):                           15
+
+Required configurations:
+Maximum password age (days):                          50
+Lockout duration (minutes):                           25
